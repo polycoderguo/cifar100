@@ -8,9 +8,9 @@ Data: cifar100 dataset
 Dataset contains 20 superclasses and each has 5 classes in it. 
 An example is given as follow:
 
-Superclass   			Classes
-aquatic mammals			beaver, dolphin, otter, seal, whale
-fish				aquarium fish, flatfish, ray, shark, trout
+Superclass   			Classes <br>
+aquatic mammals			beaver, dolphin, otter, seal, whale <br>
+fish				aquarium fish, flatfish, ray, shark, trout <br>
 
 large man-made outdoor things	bridge, castle, house, road, skyscraper
 large natural outdoor scenes	cloud, forest, mountain, plain, sea
