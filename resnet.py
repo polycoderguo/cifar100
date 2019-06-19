@@ -13,7 +13,8 @@ class Resnet:
 		self.x_test = x_test
 		self.y_train = y_train
 		self.y_test = y_test
-	def model(self):
+		#self.y_predict = y_predict
+	def train(self):
 
 		base_model = ResNet50(include_top=False, weights='imagenet', input_shape=(32,32,3))
 		resnet_input_train = preprocess_input(self.x_train)
@@ -36,8 +37,8 @@ class Resnet:
 		# compile the model (should be done *after* setting layers to non-trainable)
 		model.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['accuracy'])
 		# train the model on the new data for a few epochs
-		model.fit(resnet_input_train, to_categorical(self.y_train, num_classes=2), batch_size=64, epochs=2,
-				validation_data=(resnet_input_test, to_categorical(self.y_test, num_classes=2)),
+		model.fit(resnet_input_train,self.y_train, batch_size=64, epochs=2,
+				validation_data=(resnet_input_test,self.y_test),
 				verbose=2, shuffle=True)
 		# at this point, the top layers are well trained and we can start fine-tuning
 		# convolutional layers from Resnet. We will freeze the bottom N layers
@@ -50,10 +51,11 @@ class Resnet:
 
 # we train our model again (this time fine-tuning the top 2 inception blocks
 # alongside the top Dense layers
-		model.fit(resnet_input_train, to_categorical(self.y_train, num_classes=2), batch_size=64, epochs=150,
-				validation_data=(resnet_input_test, to_categorical(self.y_test, num_classes=2)),verbose=2, shuffle=True)
-
+		model.fit(resnet_input_train, self.y_train , batch_size=64, epochs=150,
+				validation_data=(resnet_input_test, self.y_test),verbose=2, shuffle=True)
+		
 		y_tr_predict = model.predict(resnet_input_train)
 		y_te_predict = model.predict(resnet_input_test)
+			
 		accuracy = accuracy_score(self.y_test, y_te_predict)
 		return accuracy

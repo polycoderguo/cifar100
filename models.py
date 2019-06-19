@@ -1,5 +1,5 @@
 from sklearn.ensemble import GradientBoostingClassifier
-from xgboost import XGBClassifier
+#from xgboost import XGBClassifier
 
 class modeltrainer:
 	def __init__(self, x_train, x_test, y_train, y_test):
@@ -7,13 +7,13 @@ class modeltrainer:
 		self.x_test = x_test
 		self.y_train = y_train
 		self.y_test = y_test
-	def train_GradientBoost():
+	def train_GradientBoost(self):
 		clf = GradientBoostingClassifier()
-		clf.fit(self.x_train_, self.y_train)
-		score = clf.score(self.x_test, y_test)
+		clf.fit(self.x_train, self.y_train)
+		score = clf.score(self.x_test, self.y_test)
         	#print(score)
 		return score
-	def train_XGBoost()
+	#def train_XGBoost()
 
 
 

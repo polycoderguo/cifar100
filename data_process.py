@@ -101,6 +101,6 @@ def PreprocessDataset(target_0, target_1, train_0, train_1, deep_learning):
     y_train = np.concatenate((np.zeros(len(train_0)), np.ones(len(train_1))), axis = 0)
     y_test = np.concatenate((np.zeros(len(test_0)), np.ones(len(test_1))), axis = 0)
     if deep_learning: 
-        y_train = keras.utils.to_categorical(y_train, 2)
-        y_test = keras.utils.to_categorical(y_test, 2)
+        y_train = to_categorical(y_train, 2)
+        y_test =to_categorical(y_test, 2)
     return x_train, x_test, y_train, y_test
